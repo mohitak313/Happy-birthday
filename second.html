@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>message for you!!!</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #434343);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+    }
+
+    .card-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 300px;
+      height: 200px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      color: white;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: transform 0.5s, opacity 0.5s;
+      position: relative;
+      z-index: 2; /* Ensure the card stays above the light rays */
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.5;
+      word-wrap: break-word;
+      margin: 0;
+    }
+
+    .button-container {
+      position: absolute;
+      bottom: 50px;
+      text-align: center;
+    }
+
+    .next-button {
+      background: rgba(0, 255, 255, 0.5);
+      border: 2px solid #00ffff;
+      padding: 15px 30px;
+      color: white;
+      font-size: 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      outline: none;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .next-button:hover {
+      background: rgba(0, 255, 255, 0.8);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+
+    .next-button:after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: glow 1.5s infinite alternate;
+      background: linear-gradient(45deg, rgb(0, 255, 255), rgb(255, 0, 255));
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 15px rgb(0, 255, 255);
+      }
+      100% {
+        box-shadow: 0 0 30px rgb(255, 0, 255);
+      }
+    }
+
+    /* Typewriter effect */
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #fff;
+      width: 0;
+    }
+
+    @keyframes typing {
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card.fade-in {
+      animation: fadeIn 0.8s ease-out forwards; /* Adjusted the time to 0.8s */
+    }
+
+    /* Light rays behind the card */
+    .light-rays {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.5) 30%, rgba(0, 0, 0, 0) 80%);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 1;
+      animation: rays 3s infinite alternate;
+    }
+
+    @keyframes rays {
+      0% {
+        transform: rotate(0deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: rotate(360deg);
+        opacity: 1;
+      }
+    }
+
+    /* Bottom Corner Button */
+    .bottom-button-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .gift-button {
+      background: #66bbba;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .gift-button:hover {
+      background: #65a0ae;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Light Rays Effect -->
+    <div class="light-rays"></div>
+
+    <!-- Card with Typewriter Text -->
+    <div class="card" id="card">
+      <p class="typewriter" id="line1"></p>
+      <p class="typewriter" id="line2"></p>
+      <p class="typewriter" id="line3"></p>
+      <p class="typewriter" id="line4"></p>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="next-button" onclick="window.location.href='next-page.html'">Next</button>
+  </div>
+
+  <div class="bottom-button-container">
+    <p>Here's your gift:</p>
+    <button class="gift-button" onclick="alert('Surprise! 🎉')">Click Me</button>
+  </div>
+
+  <script>
+    // Lines to display
+    const lines = [
+      "bbggkuuyffffkj if fy fuy p ihiyhyi  Yy yi H",
+      "However, due to increasing population and industrialization, water scarcity is a growing concern.",
+      "We must conserve water to ensure its availability for future generations.",
+      "Simple steps like fixing leaks, taking shorter showers, and watering plants efficiently can make a significant difference."
+    ];
+
+    // Typewriter Animation Logic
+    lines.forEach((line, index) => {
+      const lineElement = document.getElementById(`line${index + 1}`);
+      setTimeout(() => {
+        lineElement.textContent = line;
+        lineElement.style.animation = `typing 3s steps(30) forwards, blink 0.75s step-end infinite`;
+      }, index * 4000); // Delay between lines
+    });
+
+    // Fade-in effect for the card
+    window.addEventListener('load', () => {
+      const card = document.getElementById('card');
+      card.classList.add('fade-in');
+    });
+  </script>
+</body>
+</html>

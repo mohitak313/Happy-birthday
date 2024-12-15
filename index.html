@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #000; /* Black background */
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards, scaleUp 2s ease-in forwards;
+      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Fade-In Animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Scale-Up Animation */
+    @keyframes scaleUp {
+      0% {
+        transform: scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday!</h1>
+
+  <script>
+    // Automatically navigate to the next page after 4 seconds
+    setTimeout(() => {
+      window.location.href = "nextpage.html"; // Replace with your actual next page URL
+    }, 4000); // 4000 ms = 4 seconds
+  </script>
+</body>
+</html>
