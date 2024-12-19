@@ -37,7 +37,7 @@
       transform: translateY(20px);
       transition: transform 0.5s, opacity 0.5s;
       position: relative;
-      z-index: 2; /* Ensure the card stays above the light rays */
+      z-index: 2;
     }
 
     .card:hover {
@@ -131,7 +131,7 @@
     }
 
     .card.fade-in {
-      animation: fadeIn 0.8s ease-out forwards; /* Adjusted the time to 0.8s */
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
     /* Light rays behind the card */
@@ -157,6 +157,25 @@
         transform: rotate(360deg);
         opacity: 1;
       }
+    }
+
+    /* Button inside the card, positioned at the bottom right */
+    .card-button {
+      background: #66bbba;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      transition: background 0.3s;
+    }
+
+    .card-button:hover {
+      background: #65a0ae;
     }
 
     /* Bottom Corner Button */
@@ -196,7 +215,8 @@
       <p class="typewriter" id="line2"></p>
       <p class="typewriter" id="line3"></p>
       <p class="typewriter" id="line4"></p>
-      
+      <!-- Button inside the card, fixed to the bottom-right -->
+      <button class="card-button" onclick="window.location.href='desc.html">First Me</button>
     </div>
   </div>
 
@@ -212,10 +232,10 @@
   <script>
     // Lines to display
     const lines = [
-      "Hyy vartika, Happy Birthday🎂.Mujhe pta chla ",
-      "tumhare or smith ke baare. Tumhe phele hi bta",
-      "dena chahiye tha to me tumse itna attract na",
-      "hota🥺😔...bye tumhare liye ek gift h neeche."
+      "Hyy vartika, Happy Birthday🎂.tumhare  ",
+      "liye ek gift h ye jo button dikh rha na ",
+      "issi me click karo[hehehe]",      
+      "phele yhi vali deko phir back ana..."
     ];
 
     // Typewriter Animation Logic
