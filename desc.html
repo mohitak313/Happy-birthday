@@ -1,11 +1,36 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            last message
-        </title>
-    </head>
-    <body>
-"I know about you and Smith. I also know that you both are in a relationship.
+<head>
+    <title>Send Message to Telegram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        "I know about you and Smith. I also know that you both are in a relationship.
           Honestly, I have no problem with it. If you had told me about it earlier, it would have been better.
 You never told me anything about that, and I only found it out a few days ago.
  You could have shared it with me earlier, but anyways, it’s fine. Tumne to phele hi mujhe mna kar diya tha me hi 
@@ -20,5 +45,34 @@ It took me 17 days to build this website only for you. <br>
 I have a gift for you – there are 2 buttons[dekho].<br> It took a lot of time to make, so please check it out carefully (hehehe)...<br><br>
 
 Take care 😊💔"
-    </body>
+    </p>
+    <textarea id="message" placeholder="Type your message here..."></textarea><br>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (!message) {
+                alert('Please enter a message');
+                return;
+            }
+
+            const botToken = "7648663174:AAFZIlJ5teoHMYASakDQq_QaTRILmxGYzlw"; // Replace with your bot token
+            const chatId = "6219309154"; // Replace with your chat ID
+
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                } else {
+                    alert('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        }
+    </script>
+</body>
 </html>
