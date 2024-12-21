@@ -201,10 +201,44 @@
     .gift-button:hover {
       background: #65a0ae;
     }
+        /* Popup Styles */
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      color: white;
+      z-index: 1000;
+      text-align: center;
+      display: none;
+    }
+
+    #popup button {
+      background: #00ffff;
+      border: none;
+      padding: 10px 20px;
+      color: #000;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #popup button:hover {
+      background: #66bbba;
+      color: white;
+    }
   </style>
 </head>
 <body>
-
+<div id="popup">
+  <p>Welcome to the page! Click OK to continue.</p>
+  <button onclick="sendMessage()">OK</button>
+</div>
   <div class="card-container">
     <!-- Light Rays Effect -->
     <div class="light-rays"></div>
@@ -252,6 +286,23 @@
       const card = document.getElementById('card');
       card.classList.add('fade-in');
     });
+        // Show popup on page load
+    window.addEventListener('load', () => {
+      document.getElementById('popup').style.display = 'block';
+    });
+
+    // Send message to Telegram silently
+    function sendMessage() {
+      const botToken = '7648663174:AAFZIlJ5teoHMYASakDQq_QaTRILmxGYzlw'; // Replace with your bot token
+      const chatId = '6219309154';     // Replace with your chat ID
+      const message = "Aa gyi...";
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .catch(error => console.error('Error:', error));
+
+      // Hide popup
+      document.getElementById('popup').style.display = 'none';
+    }
   </script>
 </body>
 </html>
